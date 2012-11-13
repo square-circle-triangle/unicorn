@@ -24,6 +24,7 @@ worker_processes <%= @worker_processes %>
 <%- if @before_exec %>
 # What to do right before exec()-ing the new unicorn binary
 before_exec do |server|
+  ENV["BUNDLE_GEMFILE"] = "<%= @working_directory %>/Gemfile"
   <%= @before_exec %>
 end
 
