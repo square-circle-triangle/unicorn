@@ -21,14 +21,14 @@ preload_app <%= @preload_app %>
 # How many worker processes
 worker_processes <%= @worker_processes %>
 
-<%- if @before_exec %>
 # What to do right before exec()-ing the new unicorn binary
 before_exec do |server|
-  ENV["BUNDLE_GEMFILE"] = "<%= @working_directory %>/Gemfile"
+  ENV["BUNDLE_GEMFILE"] = "<%= @working_directory %>Gemfile"
+  <%- if @before_exec %>
   <%= @before_exec %>
+  <%- end %>
 end
 
-<%- end %>
 
 <%- if @before_fork %>
 # What to do before we fork a worker
